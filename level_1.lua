@@ -4,17 +4,9 @@ local scene = composer.newScene()
 local centerX = display.contentCenterX 
 local centerY = display.contentCenterY
 
-local bg = display.newImage("BG.png",centerX, centerY)  --背景圖,X,Y
+local bg = display.newImage("BG.png") --背景圖
   bg.width = centerX*2
   bg.height = centerY*2
-
-
-
-
-
-
-
-
 
 
 
@@ -27,21 +19,18 @@ local bg = display.newImage("BG.png",centerX, centerY)  --背景圖,X,Y
 -----------------------------------------
 function scene:create( event )
     local sceneGroup = self.view
-    print("level_create")
+    bg.x = centerX
+    bg.y = centerY
+    sceneGroup:insert(bg)
 end
 
 function scene:show( event )
-    local sceneGroup = self.view
-    print("level_show")
-    composer.removeScene( "menu" )
 end
 
 function scene:hide( event )
-    local sceneGroup = self.view
 end
 
 function scene:destroy( event )
-    local sceneGroup = self.view
 end
 
 scene:addEventListener( "create", scene )
