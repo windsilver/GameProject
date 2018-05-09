@@ -12,12 +12,13 @@ local centerY = display.contentCenterY
  local start = display.newImage("Start.png",centerX/2,centerY+centerY/4) --開始按鍵
   start.width = centerX/2
   start.height = centerY/3
-
+  start.alpha = 0
  local exit = display.newImage("Exit.png",centerX/2,centerY+centerY/1.8)
   exit.width = centerX/3.5
   exit.height = centerY/3
+  exit.alpha = 0
 
- local title = display.newImage("Title.png",centerX,centerY-centerY/2)
+ local title = display.newImage("Title.png",centerX,centerY-centerY/1.6)
   title.width = centerX*1.8
   title.height = centerY/2.2 
 
@@ -25,12 +26,16 @@ local centerY = display.contentCenterY
  local music = audio.loadStream("Menu.mp3")
   audio.setVolume(.5 ,{channel=1})
 
+ local click = audio.loadStream("Click.mp3")
+ audio.setVolume(.5 ,{channel=1})
 --touch--
  function start:touch(event)
 	if event.phase == "began" then --如果點擊                            
             composer.gotoScene("level_1",{effect = "fade",time = 500})
             start:removeEventListener("touch",start) --start刪除點擊
             exit:removeEventListener("touch",exit)
+            audio.play(click)
+            audio.fadeOut({channel=1, time=300})
     end
  end
 
@@ -40,14 +45,24 @@ local centerY = display.contentCenterY
   end
  end
 
+titlemove = false
 
-
-
-  while (title.y<=200) do
-    title.y=title.y+1
+local function test(event)
+  if title.y<=centerY-centerY/2 then
+    title.y=title.y+0.2
     print(title.y)
-    break
+    else
+      titlemove = true
+      start.alpha = 1
+      exit.alpha = 1
   end
+  if(titlemove==false) then
+  timer.performWithDelay( 10, test)
+  end
+ end
+
+
+
 
 
 
@@ -68,6 +83,7 @@ function scene:show( event )
     start:addEventListener("touch", start ) --start加入點擊
     exit:addEventListener("touch", exit )
     audio.play(music,{channel=1,loop=1})
+    test()
 end
 
 function scene:hide( event )
