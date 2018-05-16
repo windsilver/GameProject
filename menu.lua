@@ -21,6 +21,7 @@ local centerY = display.contentCenterY
  local title = display.newImage("Title.png",centerX,centerY-centerY/1.6)
   title.width = centerX*1.8
   title.height = centerY/2.2 
+  title.alpha = 0
 
 --music--
  local music = audio.loadStream("Menu.mp3")
@@ -31,11 +32,11 @@ local centerY = display.contentCenterY
 --touch--
  function start:touch(event)
 	if event.phase == "began" then --如果點擊                            
-            composer.gotoScene("level_1",{effect = "fade",time = 500})
+            composer.gotoScene("level_1",{effect = "fade",time = 1000})
             start:removeEventListener("touch",start) --start刪除點擊
             exit:removeEventListener("touch",exit)
             audio.play(click)
-            audio.fadeOut({channel=1, time=300})
+            audio.fadeOut({channel=1, time=500})
     end
  end
 
@@ -49,8 +50,11 @@ titlemove = false
 
 local function test(event)
   if title.y<=centerY-centerY/2 then
-    title.y=title.y+0.2
+    title.y=title.y+0.1
     print(title.y)
+    if title.alpha<1 then
+      title.alpha=title.alpha+0.005
+    end
     else
       titlemove = true
       start.alpha = 1
