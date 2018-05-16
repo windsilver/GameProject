@@ -5,7 +5,7 @@ display.setStatusBar( display.HiddenStatusBar ) --隱藏上列
 local centerX = display.contentCenterX 
 local centerY = display.contentCenterY
 --image--
- local menu = display.newImage("Menu.png") --背景圖
+ local menu = display.newImage("Menu.png",centerX,centerY) --背景圖
   menu.width = centerX*2
   menu.height = centerY*2
 
@@ -74,8 +74,7 @@ local function test(event)
 -----------------------------------------
 function scene:create( event )
     local sceneGroup = self.view
-    menu.x = centerX --背景圖X
-    menu.y = centerY --背景圖Y
+
     sceneGroup:insert(menu) --menu匯入場景
     sceneGroup:insert(start) --start匯入場景
     sceneGroup:insert(exit) --exit匯入場景
