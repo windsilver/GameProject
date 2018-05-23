@@ -28,7 +28,7 @@ settings =
 	{
 		titleText =
 		{
-			default = "Test",
+			default = "Bear_Guide",
 		},
 	},
 }
