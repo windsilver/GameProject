@@ -5,29 +5,29 @@ display.setStatusBar( display.HiddenStatusBar ) --隱藏上列
 local centerX = display.contentCenterX 
 local centerY = display.contentCenterY
 --image--
- local menu = display.newImage("Menu.png",centerX,centerY) --背景圖
+ local menu = display.newImage("menu/Menu.png",centerX,centerY) --背景圖
   menu.width = centerX*2
   menu.height = centerY*2
 
- local start = display.newImage("Start.png",centerX/2,centerY+centerY/4) --開始按鍵
+ local start = display.newImage("menu/Start.png",centerX/2,centerY+centerY/4) --開始按鍵
   start.width = centerX/2
   start.height = centerY/3
   start.alpha = 0
- local exit = display.newImage("Exit.png",centerX/2,centerY+centerY/1.8)
+ local exit = display.newImage("menu/Exit.png",centerX/2,centerY+centerY/1.8)
   exit.width = centerX/3.5
   exit.height = centerY/3
   exit.alpha = 0
 
- local title = display.newImage("Title.png",centerX,centerY-centerY/1.6)
+ local title = display.newImage("menu/Title.png",centerX,centerY-centerY/1.6)
   title.width = centerX*1.8
   title.height = centerY/2.2 
   title.alpha = 0
 
 --music--
- local music = audio.loadStream("Menu.mp3")
+ local music = audio.loadStream("menu/Menu.mp3")
   audio.setVolume(.5 ,{channel=1})
 
- local click = audio.loadStream("Click.mp3")
+ local click = audio.loadStream("menu/Click.mp3")
  audio.setVolume(.5 ,{channel=1})
 --touch--
  function start:touch(event)
