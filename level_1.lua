@@ -1,12 +1,18 @@
 local composer = require( "composer" )
 local scene = composer.newScene()
 
-local centerX = display.contentCenterX 
-local centerY = display.contentCenterY
+local centerX = display.contentCenterX*2
+local centerY = display.contentCenterY*2
 
-local bg = display.newImage("BG.png") --背景圖
-  bg.width = centerX*2
-  bg.height = centerY*2
+local bg = display.newImage("Lv1/Bg.png",centerX/2,centerY/2) --背景圖
+  bg.width = centerX*3
+  bg.height = centerY
+  print(bg.width)
+  print(bg.height)
+  --位置待修
+
+
+
 
 
 

@@ -2,25 +2,29 @@ local composer = require( "composer" )
 local scene = composer.newScene()
 display.setStatusBar( display.HiddenStatusBar ) --隱藏上列
 
-local centerX = display.contentCenterX 
-local centerY = display.contentCenterY
+local centerX = display.contentCenterX*2
+local centerY = display.contentCenterY*2
 --image--
- local menu = display.newImage("Menu/Menu.png",centerX,centerY) --背景圖
-  menu.width = centerX*2
-  menu.height = centerY*2
 
- local start = display.newImage("Menu/Start.png",centerX/2,centerY+centerY/4) --開始按鍵
-  start.width = centerX/2
-  start.height = centerY/3
+ local menu = display.newImage("Menu/Menu.png",centerX/2,centerY/2) --背景圖
+  menu.width = centerX
+  menu.height = centerY
+  print(menu.x)
+  print(menu.width)
+  print(menu.height)
+
+ local start = display.newImage("Menu/Start.png",centerX/4,centerY/1.6) --開始按鍵
+  start.width = centerX/4
+  start.height = centerY/6
   start.alpha = 0
- local exit = display.newImage("Menu/Exit.png",centerX/2,centerY+centerY/1.8)
-  exit.width = centerX/3.5
-  exit.height = centerY/3
+ local exit = display.newImage("Menu/Exit.png",centerX/4,centerY/1.2)
+  exit.width = centerX/7
+  exit.height = centerY/6
   exit.alpha = 0
 
- local title = display.newImage("Menu/Title.png",centerX,centerY-centerY/1.6)
-  title.width = centerX*1.8
-  title.height = centerY/2.2 
+ local title = display.newImage("Menu/Title.png",centerX/2,centerY/4)
+  title.width = centerX/1.2
+  title.height = centerY/3.6
   title.alpha = 0
 
 --music--
@@ -49,9 +53,9 @@ local centerY = display.contentCenterY
 titlemove = false
 
 local function test(event)
-  if title.y<=centerY-centerY/2 then
+  if title.y<=centerY/3.5 then
     title.y=title.y+0.1
-    print(title.y)
+    --print(title.y)
     if title.alpha<1 then
       title.alpha=title.alpha+0.005
     end
