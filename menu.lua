@@ -44,6 +44,7 @@ local centerY = display.contentCenterY*2
     girl_walk.xScale = .5
     girl_walk.yScale = .5
     girl_walk:play()
+
 --bear--
  local bear_sheetInfo = require("Bear_Fly")
  local bear_fly_sheet = graphics.newImageSheet( "Chara/Bear_Fly.png", bear_sheetInfo:getSheet() )
@@ -62,13 +63,13 @@ local centerY = display.contentCenterY*2
     bear_fly.yScale = .5
     bear_fly:play()
 
-
 --music--
- local music = audio.loadStream("menu/Menu.mp3")
+ local music = audio.loadStream("Menu/Menu.mp3")
   audio.setVolume(.5 ,{channel=1})
 
- local click = audio.loadStream("menu/Click.mp3")
+ local click = audio.loadStream("Menu/Click.mp3")
  audio.setVolume(.5 ,{channel=1})
+
 --touch--
  function start:touch(event)
 	if event.phase == "began" then --如果點擊                            
