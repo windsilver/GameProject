@@ -24,8 +24,27 @@ local centerY = display.contentCenterY*2
 
  local title = display.newImage("Menu/Title.png",centerX/2,centerY/4)
   title.width = centerX/1.2
-  title.height = centerY/3.6
+  title.height = centerY/4
   title.alpha = 0
+
+--girl--
+local girl_sheetInfo = require("Girl_Walk")
+local girl_walk_sheet = graphics.newImageSheet( "Chara/Girl_Walk.png", girl_sheetInfo:getSheet() )
+
+ local girl_walk_Data = 
+    {
+      name = "Girl_Walk",
+      sheet = girl,
+      frames = {1,2,4,6,8,7,5,3},
+      time = 1500,
+    }
+ local girl_walk= display.newSprite(girl_walk_sheet, girl_walk_Data )
+    girl_walk.x = centerX/1.6
+    girl_walk.y = centerY/1.4
+    girl_walk.xScale = .5
+    girl_walk.yScale = .5
+    girl_walk:play()
+
 
 --music--
  local music = audio.loadStream("menu/Menu.mp3")
@@ -83,6 +102,7 @@ function scene:create( event )
     sceneGroup:insert(start) --start匯入場景
     sceneGroup:insert(exit) --exit匯入場景
     sceneGroup:insert(title) --title匯入場景
+    sceneGroup:insert(girl_walk)--小女孩走路匯入場景
 end
 
 function scene:show( event )
