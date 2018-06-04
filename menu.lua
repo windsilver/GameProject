@@ -23,13 +23,13 @@ local centerY = display.contentCenterY*2
   exit.alpha = 0
 
  local title = display.newImage("Menu/Title.png",centerX/2,centerY/4)
-  title.width = centerX/1.2
+  title.width = centerX/1.1
   title.height = centerY/4
   title.alpha = 0
 
 --girl--
-local girl_sheetInfo = require("Girl_Walk")
-local girl_walk_sheet = graphics.newImageSheet( "Chara/Girl_Walk.png", girl_sheetInfo:getSheet() )
+ local girl_sheetInfo = require("Girl_Walk")
+ local girl_walk_sheet = graphics.newImageSheet( "Chara/Girl_Walk.png", girl_sheetInfo:getSheet() )
 
  local girl_walk_Data = 
     {
@@ -44,6 +44,23 @@ local girl_walk_sheet = graphics.newImageSheet( "Chara/Girl_Walk.png", girl_shee
     girl_walk.xScale = .5
     girl_walk.yScale = .5
     girl_walk:play()
+--bear--
+ local bear_sheetInfo = require("Bear_Fly")
+ local bear_fly_sheet = graphics.newImageSheet( "Chara/Bear_Fly.png", bear_sheetInfo:getSheet() )
+
+ local bear_fly_Data = 
+    {
+      name = "Bear_Fly",
+      sheet = bear,
+      frames = {1,2,3,4,5,6,7,8,9,10},
+      time = 1500,
+    }
+ local bear_fly= display.newSprite(bear_fly_sheet, bear_fly_Data )
+    bear_fly.x = centerX/1.3
+    bear_fly.y = centerY/1.6
+    bear_fly.xScale = -.5
+    bear_fly.yScale = .5
+    bear_fly:play()
 
 
 --music--
@@ -103,6 +120,7 @@ function scene:create( event )
     sceneGroup:insert(exit) --exit匯入場景
     sceneGroup:insert(title) --title匯入場景
     sceneGroup:insert(girl_walk)--小女孩走路匯入場景
+    sceneGroup:insert(bear_fly)--小熊飛行匯入場景
 end
 
 function scene:show( event )
