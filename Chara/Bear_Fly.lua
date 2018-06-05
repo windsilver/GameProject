@@ -1,7 +1,7 @@
 --
 -- created with TexturePacker (http://www.codeandweb.com/texturepacker)
 --
--- $TexturePacker:SmartUpdate:6300327ef99ab245e6ac455aa87b2be0:2cc163dcc34595ec3fdc2723c3228a1f:20f4f6db0202dca47bd3e47be1651884$
+-- $TexturePacker:SmartUpdate:e3217cfd6da4ccbdf981960475601366:a5042de00fc245ecf34dc5035025778e:623b63c84d1cd4ab005c92e5ca9c9fde$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -15,144 +15,92 @@ SheetInfo.sheet =
     frames = {
     
         {
-            -- 1
+            -- bear_0
             x=2,
             y=2,
-            width=241,
-            height=249,
+            width=281,
+            height=292,
 
-            sourceX = 29,
-            sourceY = 22,
-            sourceWidth = 400,
-            sourceHeight = 500
+            sourceX = 172,
+            sourceY = 257,
+            sourceWidth = 596,
+            sourceHeight = 842
         },
         {
-            -- 10
-            x=245,
+            -- bear_1
+            x=285,
             y=2,
-            width=249,
-            height=253,
+            width=290,
+            height=296,
 
-            sourceX = 13,
-            sourceY = 21,
-            sourceWidth = 400,
-            sourceHeight = 500
+            sourceX = 163,
+            sourceY = 248,
+            sourceWidth = 596,
+            sourceHeight = 842
         },
         {
-            -- 2
-            x=245,
+            -- bear_2
+            x=577,
             y=2,
-            width=249,
-            height=253,
+            width=299,
+            height=299,
 
-            sourceX = 24,
-            sourceY = 11,
-            sourceWidth = 400,
-            sourceHeight = 500
+            sourceX = 155,
+            sourceY = 240,
+            sourceWidth = 596,
+            sourceHeight = 842
         },
         {
-            -- 3
-            x=496,
+            -- bear_3
+            x=878,
             y=2,
-            width=255,
-            height=256,
+            width=305,
+            height=300,
 
-            sourceX = 13,
-            sourceY = 15,
-            sourceWidth = 400,
-            sourceHeight = 500
+            sourceX = 148,
+            sourceY = 234,
+            sourceWidth = 596,
+            sourceHeight = 842
         },
         {
-            -- 4
-            x=753,
+            -- bear_4
+            x=1185,
             y=2,
-            width=261,
-            height=257,
+            width=311,
+            height=301,
 
-            sourceX = 9,
-            sourceY = 14,
-            sourceWidth = 400,
-            sourceHeight = 500
+            sourceX = 141,
+            sourceY = 228,
+            sourceWidth = 596,
+            sourceHeight = 842
         },
         {
-            -- 5
-            x=1016,
+            -- bear_5
+            x=1498,
             y=2,
-            width=266,
-            height=257,
+            width=316,
+            height=300,
 
-            sourceX = 5,
-            sourceY = 17,
-            sourceWidth = 400,
-            sourceHeight = 500
-        },
-        {
-            -- 6
-            x=1284,
-            y=2,
-            width=270,
-            height=256,
-
-            sourceX = 3,
-            sourceY = 12,
-            sourceWidth = 400,
-            sourceHeight = 500
-        },
-        {
-            -- 7
-            x=1016,
-            y=2,
-            width=266,
-            height=257,
-
-            sourceX = 10,
-            sourceY = 11,
-            sourceWidth = 400,
-            sourceHeight = 500
-        },
-        {
-            -- 8
-            x=753,
-            y=2,
-            width=261,
-            height=257,
-
-            sourceX = 6,
-            sourceY = 20,
-            sourceWidth = 400,
-            sourceHeight = 500
-        },
-        {
-            -- 9
-            x=496,
-            y=2,
-            width=255,
-            height=256,
-
-            sourceX = 9,
-            sourceY = 16,
-            sourceWidth = 400,
-            sourceHeight = 500
+            sourceX = 135,
+            sourceY = 223,
+            sourceWidth = 596,
+            sourceHeight = 842
         },
     },
     
-    sheetContentWidth = 1556,
-    sheetContentHeight = 261
+    sheetContentWidth = 1816,
+    sheetContentHeight = 305
 }
 
 SheetInfo.frameIndex =
 {
 
-    ["1"] = 1,
-    ["2"] = 2,
-    ["3"] = 3,
-    ["4"] = 4,
-    ["5"] = 5,
-    ["6"] = 6,
-    ["7"] = 7,
-    ["8"] = 8,
-    ["9"] = 9,
-    ["10"] = 10,
+    ["bear_0"] = 1,
+    ["bear_1"] = 2,
+    ["bear_2"] = 3,
+    ["bear_3"] = 4,
+    ["bear_4"] = 5,
+    ["bear_5"] = 6,
 }
 
 function SheetInfo:getSheet()

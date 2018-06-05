@@ -55,6 +55,7 @@ local centerY = display.contentCenterY*2
     girl_idle.y = centerY/1.4
     girl_idle.xScale = .5
     girl_idle.yScale = .5
+    girl_idle.alpha = 0
     girl_idle:play()
 
 --girl_surprised--
@@ -65,12 +66,14 @@ local centerY = display.contentCenterY*2
       name = "Girl_Surprised",
       frames = {1,2,3,4,5},
       time = 1500,
+      loopCount = 1--重複一次
     }
- local girl_surprised= display.newSprite(girl_surprised_sheet, girl_surprised_Data )
+    girl_surprised = display.newSprite(girl_surprised_sheet, girl_surprised_Data )
     girl_surprised.x = centerX/2.4
     girl_surprised.y = centerY/1.4
     girl_surprised.xScale = .5
     girl_surprised.yScale = .5
+    girl_surprised.alpha = 0
     girl_surprised:play()
 
 --bear--
@@ -79,12 +82,12 @@ local centerY = display.contentCenterY*2
  local bear_fly_Data = 
     {
       name = "Bear_Fly",
-      frames = {1,2,3,4,5,6,7,8,9,10},
+      frames = {1,2,3,4,5,6,5,4,3,2},
       time = 1500,
     }
- local bear_fly= display.newSprite(bear_fly_sheet, bear_fly_Data )
-    bear_fly.x = centerX/1.3
-    bear_fly.y = centerY/1.6
+    bear_fly= display.newSprite(bear_fly_sheet, bear_fly_Data )
+    bear_fly.x = centerX/1.2
+    bear_fly.y = centerY/1.8
     bear_fly.xScale = -.5
     bear_fly.yScale = .5
     bear_fly.alpha = 0
@@ -140,7 +143,8 @@ local function titleDown(event)
  end
 
 
-
+--AAA()
+---BBB()
 
 
 
@@ -154,9 +158,9 @@ function scene:create( event )
     sceneGroup:insert(exit) --exit匯入場景
     sceneGroup:insert(title) --title匯入場景
     sceneGroup:insert(girl_walk)--小女孩走路匯入場景
-    sceneGroup:insert(girl_idle)--小女孩走路匯入場景
     sceneGroup:insert(bear_fly)--小熊飛行匯入場景
-    sceneGroup:insert(girl_surprised)--小女孩驚嚇匯入場景
+    --sceneGroup:insert(girl_idle)--小女孩待機匯入場景    
+    --sceneGroup:insert(girl_surprised)--小女孩驚嚇匯入場景
 end
 
 function scene:show( event )
