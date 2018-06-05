@@ -9,9 +9,6 @@ local centerY = display.contentCenterY*2
  local menu = display.newImage("Menu/Menu.png",centerX/2,centerY/2) --背景圖
   menu.width = centerX
   menu.height = centerY
-  print(menu.x)
-  print(menu.width)
-  print(menu.height)
 
  local start = display.newImage("Menu/Start.png",centerX/4,centerY/1.6) --開始按鍵
   start.width = centerX/4
@@ -27,15 +24,13 @@ local centerY = display.contentCenterY*2
   title.height = centerY/4
   title.alpha = 0
 
---girl--
- local girl_sheetInfo = require("Girl_Walk")
- local girl_walk_sheet = graphics.newImageSheet( "Chara/Girl_Walk.png", girl_sheetInfo:getSheet() )
-
+--girl_walk--
+ local girl_walk_sheetInfo = require("Chara.Girl_Walk")
+ local girl_walk_sheet = graphics.newImageSheet( "Chara/Girl_Walk.png", girl_walk_sheetInfo:getSheet() )
  local girl_walk_Data = 
     {
       name = "Girl_Walk",
-      sheet = girl,
-      frames = {1,2,4,6,8,7,5,3},
+      frames = {1,2,3,4,5,4,3,2},
       time = 1500,
     }
  local girl_walk= display.newSprite(girl_walk_sheet, girl_walk_Data )
@@ -45,14 +40,28 @@ local centerY = display.contentCenterY*2
     girl_walk.yScale = .5
     girl_walk:play()
 
---bear--
- local bear_sheetInfo = require("Bear_Fly")
- local bear_fly_sheet = graphics.newImageSheet( "Chara/Bear_Fly.png", bear_sheetInfo:getSheet() )
+--girl_idle--
+ local girl_idle_sheetInfo = require("Chara.Girl_Idle")
+ local girl_idle_sheet = graphics.newImageSheet( "Chara/Girl_Idle.png", girl_idle_sheetInfo:getSheet() )
+ local girl_idle_Data = 
+    {
+      name = "Girl_Idle",
+      frames = {1,2,3,4,5,6,5,4,3,2},
+      time = 1500,
+    }
+ local girl_idle= display.newSprite(girl_idle_sheet, girl_idle_Data )
+    girl_idle.x = centerX/1.9
+    girl_idle.y = centerY/1.4
+    girl_idle.xScale = .5
+    girl_idle.yScale = .5
+    girl_idle:play()
 
+--bear--
+ local bear_sheetInfo = require("Chara.Bear_Fly")
+ local bear_fly_sheet = graphics.newImageSheet( "Chara/Bear_Fly.png", bear_sheetInfo:getSheet() )
  local bear_fly_Data = 
     {
       name = "Bear_Fly",
-      sheet = bear,
       frames = {1,2,3,4,5,6,7,8,9,10},
       time = 1500,
     }
@@ -89,7 +98,7 @@ local centerY = display.contentCenterY*2
 
 titlemove = false
 
-local function test(event)
+local function titleDown(event)
   if title.y<=centerY/3.5 then
     title.y=title.y+0.1
     --print(title.y)
@@ -97,12 +106,12 @@ local function test(event)
       title.alpha=title.alpha+0.005
     end
     else
-      titlemove = true
-      start.alpha = 1
-      exit.alpha = 1
+      --titlemove = true
+      start.alpha = start.alpha+0.01
+      exit.alpha = exit.alpha+0.01
   end
   if(titlemove==false) then
-  timer.performWithDelay( 10, test)
+  timer.performWithDelay( 10, titleDown)
   end
  end
 
@@ -121,6 +130,7 @@ function scene:create( event )
     sceneGroup:insert(exit) --exit匯入場景
     sceneGroup:insert(title) --title匯入場景
     sceneGroup:insert(girl_walk)--小女孩走路匯入場景
+    sceneGroup:insert(girl_idle)--小女孩走路匯入場景
     sceneGroup:insert(bear_fly)--小熊飛行匯入場景
 end
 
@@ -129,7 +139,7 @@ function scene:show( event )
     start:addEventListener("touch", start ) --start加入點擊
     exit:addEventListener("touch", exit )
     audio.play(music,{channel=1,loop=1})
-    test()
+    titleDown()
 end
 
 function scene:hide( event )
