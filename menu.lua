@@ -38,6 +38,7 @@ local centerY = display.contentCenterY*2
     girl_walk.y = centerY/1.4
     girl_walk.xScale = .5
     girl_walk.yScale = .5
+    girl_walk.alpha = 0
     girl_walk:play()
 
 --girl_idle--
@@ -56,6 +57,22 @@ local centerY = display.contentCenterY*2
     girl_idle.yScale = .5
     girl_idle:play()
 
+--girl_surprised--
+ local girl_surprised_sheetInfo = require("Chara.Girl_Surprised")
+ local girl_surprised_sheet = graphics.newImageSheet( "Chara/Girl_Surprised.png", girl_surprised_sheetInfo:getSheet() )
+ local girl_surprised_Data = 
+    {
+      name = "Girl_Surprised",
+      frames = {1,2,3,4,5},
+      time = 1500,
+    }
+ local girl_surprised= display.newSprite(girl_surprised_sheet, girl_surprised_Data )
+    girl_surprised.x = centerX/2.4
+    girl_surprised.y = centerY/1.4
+    girl_surprised.xScale = .5
+    girl_surprised.yScale = .5
+    girl_surprised:play()
+
 --bear--
  local bear_sheetInfo = require("Chara.Bear_Fly")
  local bear_fly_sheet = graphics.newImageSheet( "Chara/Bear_Fly.png", bear_sheetInfo:getSheet() )
@@ -70,6 +87,7 @@ local centerY = display.contentCenterY*2
     bear_fly.y = centerY/1.6
     bear_fly.xScale = -.5
     bear_fly.yScale = .5
+    bear_fly.alpha = 0
     bear_fly:play()
 
 --music--
@@ -81,7 +99,7 @@ local centerY = display.contentCenterY*2
 
 --touch--
  function start:touch(event)
-	if event.phase == "began" then --如果點擊                            
+	if event.phase == "began" and titlemove == true then --如果點擊                            
             composer.gotoScene("level_1",{effect = "fade",time = 1000})
             start:removeEventListener("touch",start) --start刪除點擊
             exit:removeEventListener("touch",exit)
@@ -91,7 +109,7 @@ local centerY = display.contentCenterY*2
  end
 
  function exit:touch(event)
-  if event.phase == "began" then
+  if event.phase == "began" and titlemove == true then
     os.exit()
   end
  end
@@ -105,13 +123,19 @@ local function titleDown(event)
     if title.alpha<1 then
       title.alpha=title.alpha+0.005
     end
-    else
+    else if start.alpha<1 then
       --titlemove = true
       start.alpha = start.alpha+0.01
       exit.alpha = exit.alpha+0.01
+      girl_walk.alpha = girl_walk.alpha +0.01
+      bear_fly.alpha = bear_fly.alpha+0.01
+    end
   end
   if(titlemove==false) then
   timer.performWithDelay( 10, titleDown)
+  end
+  if start.alpha == 1 then
+    titlemove = true
   end
  end
 
@@ -132,6 +156,7 @@ function scene:create( event )
     sceneGroup:insert(girl_walk)--小女孩走路匯入場景
     sceneGroup:insert(girl_idle)--小女孩走路匯入場景
     sceneGroup:insert(bear_fly)--小熊飛行匯入場景
+    sceneGroup:insert(girl_surprised)--小女孩驚嚇匯入場景
 end
 
 function scene:show( event )
