@@ -2,8 +2,8 @@ local composer = require( "composer" )
 local scene = composer.newScene()
 display.setStatusBar( display.HiddenStatusBar ) --隱藏上列
 
-local centerX = display.contentCenterX*2
-local centerY = display.contentCenterY*2
+ centerX = display.contentCenterX*2
+ centerY = display.contentCenterY*2
 --image--
 
  local menu = display.newImage("Menu/Menu.png",centerX/2,centerY/2) --背景圖
@@ -27,13 +27,13 @@ local centerY = display.contentCenterY*2
 --girl_walk--
  local girl_walk_sheetInfo = require("Chara.Girl_Walk")
  local girl_walk_sheet = graphics.newImageSheet( "Chara/Girl_Walk.png", girl_walk_sheetInfo:getSheet() )
- local girl_walk_Data = 
+  girl_walk_Data = 
     {
       name = "Girl_Walk",
       frames = {1,2,3,4,5,4,3,2},
       time = 1500,
     }
- local girl_walk= display.newSprite(girl_walk_sheet, girl_walk_Data )
+    girl_walk= display.newSprite(girl_walk_sheet, girl_walk_Data )
     girl_walk.x = centerX/1.6
     girl_walk.y = centerY/1.4
     girl_walk.xScale = .5
@@ -42,15 +42,15 @@ local centerY = display.contentCenterY*2
     girl_walk:play()
 
 --girl_idle--
- local girl_idle_sheetInfo = require("Chara.Girl_Idle")
- local girl_idle_sheet = graphics.newImageSheet( "Chara/Girl_Idle.png", girl_idle_sheetInfo:getSheet() )
- local girl_idle_Data = 
+  local girl_idle_sheetInfo = require("Chara.Girl_Idle")
+  local girl_idle_sheet = graphics.newImageSheet( "Chara/Girl_Idle.png", girl_idle_sheetInfo:getSheet() )
+  local girl_idle_Data = 
     {
       name = "Girl_Idle",
       frames = {1,2,3,4,5,6,5,4,3,2},
       time = 1500,
     }
- local girl_idle= display.newSprite(girl_idle_sheet, girl_idle_Data )
+    girl_idle= display.newSprite(girl_idle_sheet, girl_idle_Data )
     girl_idle.x = centerX/1.9
     girl_idle.y = centerY/1.4
     girl_idle.xScale = .5
@@ -108,6 +108,8 @@ local centerY = display.contentCenterY*2
             exit:removeEventListener("touch",exit)
             audio.play(click)
             audio.fadeOut({channel=1, time=500})
+            girlwalk = true
+            titleDown()
     end
  end
 
@@ -119,32 +121,37 @@ local centerY = display.contentCenterY*2
 
 titlemove = false
 
-local function titleDown(event)
+function titleDown(event)
   if title.y<=centerY/3.5 then
     title.y=title.y+0.1
-    --print(title.y)
     if title.alpha<1 then
       title.alpha=title.alpha+0.005
     end
     else if start.alpha<1 then
-      --titlemove = true
       start.alpha = start.alpha+0.01
       exit.alpha = exit.alpha+0.01
       girl_walk.alpha = girl_walk.alpha +0.01
       bear_fly.alpha = bear_fly.alpha+0.01
     end
   end
-  if(titlemove==false) then
-  timer.performWithDelay( 10, titleDown)
-  end
   if start.alpha == 1 then
     titlemove = true
   end
+
+
+  if(titlemove==false) then
+  timer.performWithDelay( 10, titleDown)
+  end
+
+  if girlwalk == true then
+    girl_walk.x = girl_walk.x +1
+    bear_fly.x = bear_fly.x +1
+    timer.performWithDelay( 10, titleDown)
+  end
+
  end
 
 
---AAA()
----BBB()
 
 
 
@@ -167,11 +174,12 @@ function scene:show( event )
     local sceneGroup = self.view
     start:addEventListener("touch", start ) --start加入點擊
     exit:addEventListener("touch", exit )
-    audio.play(music,{channel=1,loop=1})
+    audio.play(music,{channel=1,loop=0})
     titleDown()
 end
 
 function scene:hide( event )
+  girlwalk = false
 end
 
 function scene:destroy( event )
