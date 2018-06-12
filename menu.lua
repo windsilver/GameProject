@@ -65,7 +65,7 @@ display.setStatusBar( display.HiddenStatusBar ) --隱藏上列
     {
       name = "Girl_Surprised",
       frames = {1,2,3,4,5},
-      time = 1500,
+      time = 500,
       loopCount = 1--重複一次
     }
     girl_surprised = display.newSprite(girl_surprised_sheet, girl_surprised_Data )
@@ -174,7 +174,7 @@ function scene:show( event )
     local sceneGroup = self.view
     start:addEventListener("touch", start ) --start加入點擊
     exit:addEventListener("touch", exit )
-    audio.play(music,{channel=1,loop=0})
+    audio.play(music,{channel=1,loops=-1,volume = 0.5,fadein=500})
     titleDown()
 end
 
