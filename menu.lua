@@ -174,7 +174,7 @@ function scene:show( event )
     local sceneGroup = self.view
     start:addEventListener("touch", start ) --start加入點擊
     exit:addEventListener("touch", exit )
-    audio.play(music,{channel=1,loops=-1,volume = 0.5,fadein=500})
+    audio.play(music,{loops=-1,volume = 0.5,fadein=500})
     titleDown()
 end
 

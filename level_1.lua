@@ -4,7 +4,7 @@ local scene = composer.newScene()
 --local centerX = display.contentCenterX*2
 --local centerY = display.contentCenterY*2
 
-local bg = display.newImage("Lv1/BG.png") --背景圖
+local bg = display.newImage("Lv1/Bg.png") --背景圖
   bg.x = centerX*1.5 --  (-640)(/-2)(第三段) (640)(/2)(第二段) (1920)(*1.5)(第一段)
   bg.y = centerY/2
   bg.width = centerX*3
@@ -32,7 +32,7 @@ CG2.y = centerY/2
 CG2.alpha = 0
 
 local Durian = display.newImage("Lv1/durian.png")
-Durian.x = centerX/1.45
+Durian.x = centerX/1.5
 Durian.y = centerY/10
 Durian.xScale = .05
 Durian.yScale = .05
@@ -48,7 +48,8 @@ local Text_options =
 	x = centerX/2,
 	y = centerY/1.15,
 	width = 1100,
-	height = 100
+	height = 100,
+	align = "left"
 }
 local Dialogue_text = display.newText(Text_options)
 Dialogue_text:setFillColor(0,0,0)
@@ -293,10 +294,17 @@ local function DialogueBoxUp()
 		Dialogue_text.text = "熊娃娃:先不講這個。離開這裡要緊，跟緊我。"
 		Dialogue=true
 	elseif sentence==13 then
+		Dialogue_text.y = centerY/2
+		DialogueBox.y= centerY/2
+		Dialogue_text:setFillColor(1,0,0)
 		Dialogue_text.text = "請點擊畫面上的危險事物來讓小女孩安全通過"
+		DialogueBox.alpha = 0.1
 		Dialogue=true
 	elseif sentence==14 then
+		Dialogue_text.y = centerY/1.15
+		DialogueBox.y= centerY/1.15
 		DialogueBox.alpha = 0
+		Dialogue_text:setFillColor(1,1,1)
 		girl_idle.alpha=0
 		girl_walk.alpha=1
 		girl_GO()
