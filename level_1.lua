@@ -51,8 +51,22 @@ local Text_options =
 	height = 100,
 	align = "left"
 }
+
+local Text_options2 = 
+{ 
+	text = "",
+	x = centerX/2,
+	y = centerY/2,
+	width = 1100,
+	height = 100,
+	align = "center"
+}
+
 local Dialogue_text = display.newText(Text_options)
 Dialogue_text:setFillColor(0,0,0)
+
+local Dialogue_text2 = display.newText(Text_options2)
+Dialogue_text2:setFillColor(1,0,0)
 
 local elf_idle_sheetInfo = require("Chara.Elf_Idle")
   local elf_idle_sheet = graphics.newImageSheet( "Chara/Elf_Idle.png", elf_idle_sheetInfo:getSheet() )
@@ -189,6 +203,7 @@ local function DialogueBoxUp()
 		DialogueBox.alpha=DialogueBox.alpha+0.05
 		DialogueBox:toFront()
 		Dialogue_text:toFront()
+		Dialogue_text2:toFront()
 		timer.performWithDelay( 10, DialogueBoxUp)
 	elseif sentence==0 then
 		Dialogue_text.text = "小女孩:好想念爸爸和媽媽..."
@@ -294,17 +309,15 @@ local function DialogueBoxUp()
 		Dialogue_text.text = "熊娃娃:先不講這個。離開這裡要緊，跟緊我。"
 		Dialogue=true
 	elseif sentence==13 then
-		Dialogue_text.y = centerY/2
 		DialogueBox.y= centerY/2
-		Dialogue_text:setFillColor(1,0,0)
-		Dialogue_text.text = "請點擊畫面上的危險事物來讓小女孩安全通過"
-		DialogueBox.alpha = 0.1
+		Dialogue_text.text = ""
+		Dialogue_text2.text = "請點擊畫面上的危險事物來讓小女孩安全通過"
+		DialogueBox.alpha = 0.01
 		Dialogue=true
 	elseif sentence==14 then
-		Dialogue_text.y = centerY/1.15
 		DialogueBox.y= centerY/1.15
 		DialogueBox.alpha = 0
-		Dialogue_text:setFillColor(1,1,1)
+		Dialogue_text2.text = ""
 		girl_idle.alpha=0
 		girl_walk.alpha=1
 		girl_GO()
@@ -409,7 +422,8 @@ function scene:create( event )
     sceneGroup:insert(CG1)
     sceneGroup:insert(CG2)
     sceneGroup:insert(DialogueBox)
-    sceneGroup:insert(Dialogue_text)
+    sceneGroup:insert(Dialogue_text) 
+    sceneGroup:insert(Dialogue_text2)   
     sceneGroup:insert(elf_move)
     sceneGroup:insert(elf_idle)
     sceneGroup:insert(snake_idle)
@@ -418,6 +432,7 @@ function scene:create( event )
     sceneGroup:insert(snake_hit)
     sceneGroup:insert(Durian)
     sceneGroup:insert(_GameOver)
+
     infor = 0
 end
 
